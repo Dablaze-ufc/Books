@@ -40,7 +40,7 @@ public class BooksListActivity extends AppCompatActivity implements SearchView.O
         LinearLayoutManager booksLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
         fRecyclerView.setLayoutManager(booksLayoutManager);
 
-        try{ URL bookUrl = ApiUtils.buildUrl("news");
+        try{ URL bookUrl = ApiUtils.buildUrl("journals");
             new BookQueryTask().execute(bookUrl);
        }
         catch (Exception e){

@@ -26,11 +26,12 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_subTittle"
-                app:srcCompat="@drawable/book__open" />
+               android:imageUrl="@{Books.fThumbnail}" />
 
             <TextView
                 android:id="@+id/text_tittleNN"
                 android:layout_width="0dp"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
@@ -48,6 +49,7 @@
                 android:id="@+id/text_subTittle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
@@ -63,6 +65,7 @@
             <TextView
                 android:id="@+id/text_authorsNN"
                 android:layout_width="wrap_content"
+                android:textColor="@color/colorAccent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"

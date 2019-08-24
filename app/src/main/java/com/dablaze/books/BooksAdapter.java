@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -42,22 +43,23 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BooksViewHol
         TextView fAuthorsR;
         TextView fPublisdedDateR;
         TextView fPublishersR;
+        ImageView fImageViewR;
         public BooksViewHolder(@NonNull View itemView) {
             super(itemView);
+            fImageViewR=itemView.findViewById(R.id.imageView_recycle);
             fTittleR = itemView.findViewById(R.id.text_tittle);
             fAuthorsR = itemView.findViewById(R.id.text_authors);
             fPublisdedDateR = itemView.findViewById(R.id.text_publishedDate);
             fPublishersR = itemView.findViewById(R.id.text_publisher);
             itemView.setOnClickListener(this);
         }
-        public void bind (Books book){
+        public void bind (Books book) {
             fTittleR.setText(book.fTittle);
             fAuthorsR.setText(book.fAuthors);
             fPublishersR.setText(book.fPublishers);
             fPublisdedDateR.setText(book.fPublishedDate);
-
+            Books.loadImage(fImageViewR,book.fThumbnail);
         }
-
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
@@ -69,3 +71,4 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BooksViewHol
         }
     }
 }
+
