@@ -1,9 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".SearchActivity">
 
+
+    <EditText
+        android:id="@+id/search_tittle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:hint="@string/search_book_tittle_hint"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/search_author"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="@string/search_book_author_hint"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/search_tittle"
+        app:layout_constraintStart_toStartOf="@+id/search_tittle"
+        app:layout_constraintTop_toBottomOf="@+id/search_tittle" />
+
+    <EditText
+        android:id="@+id/search_publisher"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="@string/search_publisher_hint"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/search_author"
+        app:layout_constraintStart_toStartOf="@+id/search_author"
+        app:layout_constraintTop_toBottomOf="@+id/search_author" />
+
+    <EditText
+        android:id="@+id/search_isbn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="@string/search_book_isbn_hint"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/search_publisher"
+        app:layout_constraintStart_toStartOf="@+id/search_publisher"
+        app:layout_constraintTop_toBottomOf="@+id/search_publisher" />
+
+    <Button
+        android:id="@+id/button_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/button_shape"
+        android:text="@string/search_book_button"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_isbn" />
+
 </android.support.constraint.ConstraintLayout>
+</ScrollView>

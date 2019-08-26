@@ -1,5 +1,6 @@
 package com.dablaze.books;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
 import android.support.v4.view.MenuItemCompat;
@@ -24,6 +25,21 @@ import java.util.ArrayList;
 public class BooksListActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private ProgressBar fProgressBar;
     private RecyclerView fRecyclerView;
+    public URL fBookUrl;
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_advanced_search:
+                Intent intent = new Intent(this, SearchActivity.class);
+                startActivity(intent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -39,17 +55,23 @@ public class BooksListActivity extends AppCompatActivity implements SearchView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_list);
         fProgressBar = findViewById(R.id.progressBar);
+        Intent intent = getIntent();
+        String query = intent.getStringExtra("QueryUrl");
+        try {
+            if (query==null){
+                fBookUrl = ApiUtils.buildUrl("journals");
+            }else {
 
+                    fBookUrl = new URL(query);
+                }new BookQueryTask().execute(fBookUrl);
+        }
+                catch (Exception e){
+            Log.d("error", e.getMessage());
+
+        }
         fRecyclerView = findViewById(R.id.recycle_view);
         LinearLayoutManager booksLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         fRecyclerView.setLayoutManager(booksLayoutManager);
-
-        try {
-            URL bookUrl = ApiUtils.buildUrl("journals");
-            new BookQueryTask().execute(bookUrl);
-        } catch (Exception e) {
-            Log.d("error", e.getMessage());
-        }
 
     }
 
@@ -101,7 +123,6 @@ public class BooksListActivity extends AppCompatActivity implements SearchView.O
                 errorMsg.setVisibility(View.VISIBLE);
             } else {
                 ArrayList<Books> arrayBooks = ApiUtils.getBooksFromJson(result);
-                String resultString = "";
                 BooksAdapter adapter = new BooksAdapter(arrayBooks);
                 fRecyclerView.setAdapter(adapter);
 

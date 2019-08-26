@@ -2,4 +2,11 @@
     <string name="app_name">Books</string>
     <string name="error_message">Error Loading Data From Google Books</string>
     <string name="search">Search</string>
+    <string name="search_book_tittle_hint">Insert Book Tittle</string>
+    <string name="search_book_author_hint">Insert Book Author</string>
+    <string name="search_publisher_hint">Insert Book Publisher</string>
+    <string name="search_book_isbn_hint">Insert Book ISBN</string>
+    <string name="search_book_button">Search</string>
+    <string name="advanced_search">Advanced Search</string>
+    <string name="no_input_message">Please Insert Data Into Search Fields</string>
 </resources>

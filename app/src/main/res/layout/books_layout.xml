@@ -29,11 +29,12 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:contentDescription="TODO"
-                android:imageUrl="@{Books.fThumbnail}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/book__open" />
+            <!--android:imageUrl="@{Books.fThumbnail}"-->
+
 
             <TextView
                 android:id="@+id/text_tittle"
@@ -45,7 +46,6 @@
                 android:layout_marginRight="8dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@{Books.fTittle}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView_recycle"
@@ -57,7 +57,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@{Books.fAuthors}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/text_tittle"
@@ -69,7 +68,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@{Books.fPublisher}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 app:layout_constraintStart_toStartOf="@+id/text_authors"
                 app:layout_constraintTop_toBottomOf="@+id/text_authors" />
@@ -81,7 +79,6 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
-                android:text="@{Books.fPublishedDate}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_publisher" />

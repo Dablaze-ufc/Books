@@ -59,11 +59,11 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BooksViewHol
         }
 
         public void bind(Books book) {
-            fTittleR.setText(book.getTittle());
-            fAuthorsR.setText(book.getAuthors());
-            fPublishersR.setText(book.getPublishers());
-            fPublisdedDateR.setText(book.getPublishedDate());
-            Books.loadImage(fImageViewR, book.getThumbnail());
+            fTittleR.setText(book.fTittle);
+            fAuthorsR.setText(book.fAuthors);
+            fPublishersR.setText(book.fPublishers);
+            fPublisdedDateR.setText(book.fPublishedDate);
+            Books.loadImage(fImageViewR, book.fThumbnail);
         }
 
         @Override

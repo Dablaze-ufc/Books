@@ -19,11 +19,37 @@ public class ApiUtils {
     private static final String QUERY_PARAMETER_KEY = "q";
     private static final String KEY = "key";
     private static final String API_KEY = "AIzaSyDrlhz_2R0tDX4GrCJaQgm79j3J3qOe9v8";
+    public static final String TITTLE = "intitle:";
+    public static final String AUTHOR = "inauthor:";
+    public static final String PUBLISHER = "inpublisher:";
+    public static final String ISBN = "isbn:";
 
     private ApiUtils() {
     }
 
     public static final String BASE_API_URL = "https://www.googleapis.com/books/v1/volumes?";
+
+    public static URL buildUrlFromInput(String tittle, String author, String publisher, String isbn) {
+        URL url = null;
+        StringBuilder stringBuilder = new StringBuilder();
+        if (!tittle.isEmpty()) stringBuilder.append(TITTLE + tittle + "+");
+        if (!author.isEmpty()) stringBuilder.append(AUTHOR + author + "+");
+        if (!publisher.isEmpty()) stringBuilder.append(PUBLISHER + publisher + "+");
+        if (!isbn.isEmpty())
+            stringBuilder.append(ISBN + isbn + "+");
+        stringBuilder.setLength(stringBuilder.length() - 1);
+        String query = stringBuilder.toString();
+        Uri uri = Uri.parse(BASE_API_URL).buildUpon()
+                .appendQueryParameter(QUERY_PARAMETER_KEY, query)
+                .appendQueryParameter(KEY, API_KEY).build();
+        try {
+            url = new URL(uri.toString());
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        return url;
+    }
 
     public static URL buildUrl(String tittle) {
 
@@ -86,10 +112,18 @@ public class ApiUtils {
             for (int i = 0; i < numberOfBooks; i++) {
                 JSONObject bookJSON = arrayBooks.getJSONObject(i);
                 JSONObject volumeInfoJSON = bookJSON.getJSONObject(VOLUMEINFO);
-                JSONObject imageLinksJSON = volumeInfoJSON.getJSONObject(IMAGELINKS);
+                JSONObject imageLinksJSON = null;
+                if (volumeInfoJSON.has(IMAGELINKS)){
+                  imageLinksJSON =volumeInfoJSON.getJSONObject(IMAGELINKS);
+                }
 
 
-                int authorsNum = volumeInfoJSON.getJSONArray(AUTHORS).length();
+                int authorsNum;
+                try {
+                    authorsNum = volumeInfoJSON.getJSONArray(AUTHORS).length();
+                } catch(Exception e){
+                    authorsNum = 0;
+                }
                 String[] authors = new String[authorsNum];
 
                 for (int j = 0; j < authorsNum; j++) {
@@ -97,7 +131,9 @@ public class ApiUtils {
                 }
                 Books book = new Books(bookJSON.getString(ID), volumeInfoJSON.getString(TITTLE),
                         (volumeInfoJSON.isNull(SUBTITLE) ? "" : volumeInfoJSON.getString(SUBTITLE)),
-                        authors, volumeInfoJSON.getString(PUBLISHERS), volumeInfoJSON.getString(PUBLISHED_DATES), volumeInfoJSON.getString(DESCRIPTION), imageLinksJSON.getString(THUMBNAIL));
+                        authors, (volumeInfoJSON.isNull(PUBLISHERS) ? "" : volumeInfoJSON.getString(PUBLISHERS)),
+                        (volumeInfoJSON.isNull(PUBLISHED_DATES) ? "" : volumeInfoJSON.getString(PUBLISHED_DATES)),
+                        (volumeInfoJSON.isNull(DESCRIPTION) ? "" :volumeInfoJSON.getString(DESCRIPTION)), (imageLinksJSON == null) ? "": imageLinksJSON.getString(THUMBNAIL));
 
                 newBooks.add(book);
 
