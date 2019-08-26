@@ -97,7 +97,7 @@ public class ApiUtils {
                 }
                 Books book = new Books(bookJSON.getString(ID), volumeInfoJSON.getString(TITTLE),
                         (volumeInfoJSON.isNull(SUBTITLE) ? "" : volumeInfoJSON.getString(SUBTITLE)),
-                        authors, volumeInfoJSON.getString(PUBLISHERS), volumeInfoJSON.getString(PUBLISHED_DATES), volumeInfoJSON.getString(DESCRIPTION),imageLinksJSON.getString(THUMBNAIL));
+                        authors, volumeInfoJSON.getString(PUBLISHERS), volumeInfoJSON.getString(PUBLISHED_DATES), volumeInfoJSON.getString(DESCRIPTION), imageLinksJSON.getString(THUMBNAIL));
 
                 newBooks.add(book);
 

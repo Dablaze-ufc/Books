@@ -9,20 +9,84 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 public class Books implements Parcelable {
-    public String fId;
-    public String fTittle;
-    public String fSubTittle;
-    public String fAuthors;
-    public String fPublishers;
-    public String fPublishedDate;
-    public String fDescription;
-    public String fThumbnail;
+    private String fId;
+    private String fTittle;
+    private String fSubTittle;
+    private String fAuthors;
+    private String fPublishers;
+    private String fPublishedDate;
+    private String fDescription;
+    private String fThumbnail;
 
-    public Books(String id, String title, String subTitle, String[] authors, String publisher, String publishedDate, String description, String thumbnail ) {
+    public String getId() {
+        return fId;
+    }
+
+    public void setId(String id) {
+        fId = id;
+    }
+
+    public String getTittle() {
+        return fTittle;
+    }
+
+    public void setTittle(String tittle) {
+        fTittle = tittle;
+    }
+
+    public String getSubTittle() {
+        return fSubTittle;
+    }
+
+    public void setSubTittle(String subTittle) {
+        fSubTittle = subTittle;
+    }
+
+    public String getAuthors() {
+        return fAuthors;
+    }
+
+    public void setAuthors(String authors) {
+        fAuthors = authors;
+    }
+
+    public String getPublishers() {
+        return fPublishers;
+    }
+
+    public void setPublishers(String publishers) {
+        fPublishers = publishers;
+    }
+
+    public String getPublishedDate() {
+        return fPublishedDate;
+    }
+
+    public void setPublishedDate(String publishedDate) {
+        fPublishedDate = publishedDate;
+    }
+
+    public String getDescription() {
+        return fDescription;
+    }
+
+    public void setDescription(String description) {
+        fDescription = description;
+    }
+
+    public String getThumbnail() {
+        return fThumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        fThumbnail = thumbnail;
+    }
+
+    public Books(String id, String title, String subTitle, String[] authors, String publisher, String publishedDate, String description, String thumbnail) {
         fId = id;
         fTittle = title;
         fSubTittle = subTitle;
-        fAuthors = TextUtils.join(", ",authors);
+        fAuthors = TextUtils.join(", ", authors);
         fPublishers = publisher;
         fPublishedDate = publishedDate;
         fDescription = description;
@@ -68,8 +132,9 @@ public class Books implements Parcelable {
         dest.writeString(fDescription);
         dest.writeString(fThumbnail);
     }
+
     @BindingAdapter({"android:imageUrl"})
-    public static void  loadImage(ImageView view, String imageUrl){
+    public static void loadImage(ImageView view, String imageUrl) {
         Picasso.with(view.getContext()).load(imageUrl).placeholder(R.drawable.book__open).into(view);
     }
 }
