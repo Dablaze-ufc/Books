@@ -1,5 +1,6 @@
 package com.dablaze.books;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +35,19 @@ public class  SearchActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),message, Toast.LENGTH_LONG).show();
                 }else {
                     URL queryURL = ApiUtils.buildUrlFromInput(gTitle, gAuthor, gPublisher, gISBN);
+                    //shared prefernces
+                    Context context = getApplicationContext();
+                    int position =  SpUtil.getPrefrenceInt(context,SpUtil.POSITION);
+                    if (position == 0 || position ==5){
+                        position = 1;
+                    }else {
+                        position ++;
+                    }
+                    String key = SpUtil.QUERY + String.valueOf(position);
+                    String value = gTitle + "," + gAuthor + "," + gPublisher + "," + gISBN;
+                    SpUtil.setPrefernceString(context, key, value);
+                    SpUtil.setPrefernceInt(context, SpUtil.POSITION,position);
+
                     Intent intent = new Intent(getApplicationContext(),BooksListActivity.class);
                     intent.putExtra("QueryUrl",queryURL.toString());
                     startActivity(intent);

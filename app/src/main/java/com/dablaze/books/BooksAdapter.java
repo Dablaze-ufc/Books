@@ -14,12 +14,9 @@ import java.util.ArrayList;
 
 public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BooksViewHolder> {
     ArrayList<Books> fBooksArrayList;
-
     public BooksAdapter(ArrayList<Books> booksArrayList) {
         this.fBooksArrayList = booksArrayList;
-
     }
-
     @NonNull
     @Override
     public BooksViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -27,27 +24,21 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BooksViewHol
         View itemView = LayoutInflater.from(context).inflate(R.layout.books_layout, viewGroup, false);
         return new BooksViewHolder(itemView);
     }
-
     @Override
     public void onBindViewHolder(@NonNull BooksViewHolder booksViewHolder, int position) {
         Books book = fBooksArrayList.get(position);
         booksViewHolder.bind(book);
-
     }
-
     @Override
     public int getItemCount() {
         return fBooksArrayList.size();
     }
-
     public class BooksViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
         TextView fTittleR;
         TextView fAuthorsR;
         TextView fPublisdedDateR;
         TextView fPublishersR;
         ImageView fImageViewR;
-
         public BooksViewHolder(@NonNull View itemView) {
             super(itemView);
             fImageViewR = itemView.findViewById(R.id.imageView_recycle);
@@ -57,7 +48,6 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BooksViewHol
             fPublishersR = itemView.findViewById(R.id.text_publisher);
             itemView.setOnClickListener(this);
         }
-
         public void bind(Books book) {
             fTittleR.setText(book.fTittle);
             fAuthorsR.setText(book.fAuthors);
@@ -65,15 +55,13 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BooksViewHol
             fPublisdedDateR.setText(book.fPublishedDate);
             Books.loadImage(fImageViewR, book.fThumbnail);
         }
-
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
             Books selectedBook = fBooksArrayList.get(position);
-            Intent intent = new Intent(itemView.getContext(), BookDetail.class);
+            Intent intent = new Intent(v.getContext(), BookDetail.class);
             intent.putExtra("Book", selectedBook);
-            itemView.getContext().startActivity(intent);
-
+            v.getContext().startActivity(intent);
         }
     }
 }

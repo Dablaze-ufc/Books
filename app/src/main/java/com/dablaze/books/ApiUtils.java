@@ -113,15 +113,15 @@ public class ApiUtils {
                 JSONObject bookJSON = arrayBooks.getJSONObject(i);
                 JSONObject volumeInfoJSON = bookJSON.getJSONObject(VOLUMEINFO);
                 JSONObject imageLinksJSON = null;
-                if (volumeInfoJSON.has(IMAGELINKS)){
-                  imageLinksJSON =volumeInfoJSON.getJSONObject(IMAGELINKS);
+                if (volumeInfoJSON.has(IMAGELINKS)) {
+                    imageLinksJSON = volumeInfoJSON.getJSONObject(IMAGELINKS);
                 }
 
 
                 int authorsNum;
                 try {
                     authorsNum = volumeInfoJSON.getJSONArray(AUTHORS).length();
-                } catch(Exception e){
+                } catch (Exception e) {
                     authorsNum = 0;
                 }
                 String[] authors = new String[authorsNum];
@@ -133,7 +133,7 @@ public class ApiUtils {
                         (volumeInfoJSON.isNull(SUBTITLE) ? "" : volumeInfoJSON.getString(SUBTITLE)),
                         authors, (volumeInfoJSON.isNull(PUBLISHERS) ? "" : volumeInfoJSON.getString(PUBLISHERS)),
                         (volumeInfoJSON.isNull(PUBLISHED_DATES) ? "" : volumeInfoJSON.getString(PUBLISHED_DATES)),
-                        (volumeInfoJSON.isNull(DESCRIPTION) ? "" :volumeInfoJSON.getString(DESCRIPTION)), (imageLinksJSON == null) ? "": imageLinksJSON.getString(THUMBNAIL));
+                        (volumeInfoJSON.isNull(DESCRIPTION) ? "" : volumeInfoJSON.getString(DESCRIPTION)), (imageLinksJSON == null) ? "" : imageLinksJSON.getString(THUMBNAIL));
 
                 newBooks.add(book);
 
